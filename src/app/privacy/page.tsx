@@ -15,11 +15,7 @@ export default function PrivacyPage() {
       <nav className="border-b border-white/8 py-4 px-6">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-7 h-7 rounded-lg bg-teal-500 flex items-center justify-center">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
-              </svg>
-            </div>
+            <img src="/icon.png" alt="Protocol" width={28} height={28} className="rounded-lg" />
             <span className="text-white font-bold tracking-wide group-hover:text-teal-400 transition-colors">PROTOCOL</span>
           </Link>
           <Link href="/" className="text-slate-400 hover:text-white text-sm transition-colors">

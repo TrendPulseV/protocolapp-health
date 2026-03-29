@@ -23,11 +23,13 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center glow-teal-sm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
-            </svg>
-          </div>
+          <img
+            src="/icon.png"
+            alt="Protocol"
+            width={32}
+            height={32}
+            className="rounded-xl glow-teal-sm"
+          />
           <span className="text-white font-bold text-lg tracking-wide group-hover:text-teal-400 transition-colors">
             PROTOCOL
           </span>

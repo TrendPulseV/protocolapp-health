@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
+import Lightbox from "./Lightbox";
 
 const screens = [
   {
@@ -43,13 +44,19 @@ const screens = [
   },
 ];
 
-function PhoneMockup({ screen }: { screen: typeof screens[0] }) {
+type Screen = typeof screens[0];
+
+function PhoneMockup({ screen, onClick }: { screen: Screen; onClick: () => void }) {
   return (
-    <div className="flex-shrink-0 w-[220px]">
+    <button
+      className="flex-shrink-0 w-[300px] text-left group cursor-pointer focus:outline-none"
+      onClick={onClick}
+      aria-label={`View ${screen.title} screenshot`}
+    >
       {/* Phone frame */}
-      <div className="relative w-[220px] h-[470px] rounded-[36px] bg-[#1a1a1a] border-[6px] border-[#2a2a2a] shadow-2xl overflow-hidden">
+      <div className="relative w-[300px] h-[640px] rounded-[44px] bg-[#1a1a1a] border-[8px] border-[#2a2a2a] shadow-2xl overflow-hidden transition-transform duration-200 group-hover:scale-[1.03] group-hover:shadow-teal-500/20 group-hover:shadow-[0_0_40px_rgba(20,184,166,0.2)]">
         {/* Dynamic island */}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[80px] h-[22px] rounded-full bg-black z-10" />
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[90px] h-[26px] rounded-full bg-black z-10" />
 
         {/* Screen content */}
         <div className={`absolute inset-0 bg-gradient-to-b ${screen.bg}`}>
@@ -58,26 +65,38 @@ function PhoneMockup({ screen }: { screen: typeof screens[0] }) {
             alt={screen.title}
             fill
             className="object-cover object-top"
-            onError={() => {}}
+            sizes="300px"
+            quality={95}
           />
         </div>
 
+        {/* Tap hint overlay */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 glass-teal rounded-full px-4 py-2 flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <span className="text-teal-400 text-sm font-medium">Expand</span>
+          </div>
+        </div>
+
         {/* Bottom home indicator */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[80px] h-1 rounded-full bg-white/20" />
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[90px] h-[5px] rounded-full bg-white/30" />
       </div>
 
       {/* Label */}
-      <div className="mt-4 text-center">
-        <p className="text-white font-semibold text-sm">{screen.title}</p>
-        <p className="text-slate-500 text-xs mt-1 leading-relaxed">{screen.description}</p>
+      <div className="mt-5 text-center">
+        <p className="text-white font-semibold">{screen.title}</p>
+        <p className="text-slate-500 text-sm mt-1 leading-relaxed">{screen.description}</p>
       </div>
-    </div>
+    </button>
   );
 }
 
 export default function Screenshots() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [lightbox, setLightbox] = useState<Screen | null>(null);
 
   return (
     <section id="screenshots" className="py-32 relative overflow-hidden">
@@ -100,7 +119,7 @@ export default function Screenshots() {
             <span className="gradient-text">pocket.</span>
           </h2>
           <p className="text-xl text-slate-400 max-w-xl mx-auto">
-            Every screen designed for clarity. Every feature one tap away.
+            Every screen designed for clarity. Tap any screenshot to explore.
           </p>
         </motion.div>
       </div>
@@ -110,13 +129,28 @@ export default function Screenshots() {
         initial={{ opacity: 0, x: 40 }}
         animate={inView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.7, delay: 0.2 }}
-        className="flex gap-6 overflow-x-auto px-[max(24px,calc((100vw-1152px)/2))] pb-6 scrollbar-hide"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="flex gap-6 overflow-x-auto pb-6"
+        style={{
+          paddingLeft: "max(24px, calc((100vw - 1152px) / 2))",
+          paddingRight: "max(24px, calc((100vw - 1152px) / 2))",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
       >
         {screens.map((s, i) => (
-          <PhoneMockup key={i} screen={s} />
+          <PhoneMockup key={i} screen={s} onClick={() => setLightbox(s)} />
         ))}
       </motion.div>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <Lightbox
+          src={lightbox.file}
+          title={lightbox.title}
+          description={lightbox.description}
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </section>
   );
 }
