@@ -37,11 +37,14 @@ export default function Nav() {
 
         {/* Links */}
         <div className="hidden md:flex items-center gap-8">
+          <a href="#screenshots" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+            Screenshots
+          </a>
           <a href="#features" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
             Features
           </a>
-          <a href="#screenshots" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
-            Screenshots
+          <a href="#pricing" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+            Pricing
           </a>
           <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
             Privacy
