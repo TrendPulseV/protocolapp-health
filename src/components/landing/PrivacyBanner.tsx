@@ -16,7 +16,7 @@ export default function PrivacyBanner() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-32 relative">
+    <section className="py-20 relative">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           ref={ref}

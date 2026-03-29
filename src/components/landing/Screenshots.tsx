@@ -99,7 +99,7 @@ export default function Screenshots() {
   const [lightbox, setLightbox] = useState<Screen | null>(null);
 
   return (
-    <section id="screenshots" className="py-32 relative overflow-hidden">
+    <section id="screenshots" className="py-20 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-teal-500/5 blur-[100px] pointer-events-none" />
 

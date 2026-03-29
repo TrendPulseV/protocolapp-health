@@ -11,7 +11,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative flex items-center justify-center overflow-hidden pt-28 pb-16">
       {/* Background layers */}
       <div className="absolute inset-0 grid-bg opacity-60" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0c1524]" />
