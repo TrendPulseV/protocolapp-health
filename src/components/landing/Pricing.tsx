@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 
 const free = [
   "Unlimited dose logging",
-  "1 active protocol",
+  "1 active protocol · up to 3 items",
   "Body map (10 sites)",
   "Peptide catalog",
   "Basic reconstitution calculator",
