@@ -14,6 +14,8 @@ const free = [
 
 const pro = [
   "Everything in Free",
+  "Apple Watch companion app",
+  "Apple Health sync",
   "Unlimited protocols",
   "Full body map — tap anywhere",
   "PK curve visualization",
@@ -28,9 +30,9 @@ const pro = [
 ];
 
 const plans = [
-  { id: "monthly", label: "Monthly", price: "$4.99", period: "/month", note: null },
-  { id: "annual",  label: "Annual",  price: "$39.99", period: "/year", note: "Save 33%" },
-  { id: "lifetime", label: "Lifetime", price: "$79.99", period: " one-time", note: "Best value" },
+  { id: "monthly", label: "Monthly", price: "$7.99", period: "/month", note: null },
+  { id: "annual",  label: "Annual",  price: "$59.99", period: "/year", note: "Save 37%" },
+  { id: "lifetime", label: "Lifetime", price: "$119.99", period: " one-time", note: "Best value" },
 ];
 
 export default function Pricing() {
@@ -143,7 +145,7 @@ export default function Pricing() {
                 <p className="text-teal-400 text-sm mt-1">Pay once. Use forever.</p>
               )}
               {selected === "annual" && (
-                <p className="text-teal-400 text-sm mt-1">Just $3.33/month — billed annually.</p>
+                <p className="text-teal-400 text-sm mt-1">Just $5.00/month — billed annually.</p>
               )}
               {selected === "monthly" && (
                 <p className="text-slate-500 text-sm mt-1">Cancel anytime.</p>

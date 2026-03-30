@@ -7,6 +7,8 @@ const stats = [
   { icon: "✓", label: "100% adherence" },
   { icon: "💉", label: "1,000+ doses tracked" },
   { icon: "🔒", label: "Zero data shared" },
+  { icon: "⌚", label: "Apple Watch" },
+  { icon: "❤️", label: "Apple Health" },
 ];
 
 export default function Hero() {
@@ -53,7 +55,7 @@ export default function Hero() {
         >
           The most complete peptide and wellness tracker.
           <br className="hidden md:block" />
-          Built for precision. Designed for privacy.
+          Built for precision. Now with Apple Watch &amp; Apple Health.
         </motion.p>
 
         {/* CTAs */}

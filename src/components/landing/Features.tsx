@@ -58,6 +58,24 @@ const features = [
     border: "border-rose-500/20",
     tag: "Inventory",
   },
+  {
+    emoji: "⌚",
+    title: "Apple Watch Companion",
+    description:
+      "Log doses, check active levels, and complete daily check-ins directly from your wrist. Today's schedule, Quick Log, and complications on your watch face — all synced offline-first.",
+    color: "from-sky-500/20 to-sky-600/5",
+    border: "border-sky-500/20",
+    tag: "Pro · Coming Soon",
+  },
+  {
+    emoji: "❤️",
+    title: "Apple Health Integration",
+    description:
+      "Protocol writes your weight, body measurements, and mindfulness sessions to Apple Health automatically. Reads your sleep and heart rate to pre-fill your daily check-in.",
+    color: "from-red-500/20 to-red-600/5",
+    border: "border-red-500/20",
+    tag: "Pro · Coming Soon",
+  },
 ];
 
 const containerVariants = {
