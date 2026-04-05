@@ -65,7 +65,7 @@ const features = [
       "Log doses, check active levels, and complete daily check-ins directly from your wrist. Today's schedule, Quick Log, and complications on your watch face — all synced offline-first.",
     color: "from-sky-500/20 to-sky-600/5",
     border: "border-sky-500/20",
-    tag: "Pro · Coming Soon",
+    tag: "Pro",
   },
   {
     emoji: "❤️",
@@ -74,7 +74,25 @@ const features = [
       "Protocol writes your weight, body measurements, and mindfulness sessions to Apple Health automatically. Reads your sleep and heart rate to pre-fill your daily check-in.",
     color: "from-red-500/20 to-red-600/5",
     border: "border-red-500/20",
-    tag: "Pro · Coming Soon",
+    tag: "Pro",
+  },
+  {
+    emoji: "🤖",
+    title: "AI Research Assistant",
+    description:
+      "Ask anything about your compounds — half-lives, interactions, dosing windows, side effects. Grounded in research, context-aware of your active stack. 50 queries/month included with Pro.",
+    color: "from-teal-500/20 to-emerald-600/5",
+    border: "border-teal-500/20",
+    tag: "Pro",
+  },
+  {
+    emoji: "🧬",
+    title: "AI Stack Builder",
+    description:
+      "Describe your goal — fat loss, recovery, longevity — and the AI builds a complete protocol with compounds, doses, and schedules. Review, edit, and activate it in one tap.",
+    color: "from-violet-500/20 to-violet-600/5",
+    border: "border-violet-500/20",
+    tag: "Pro",
   },
 ];
 

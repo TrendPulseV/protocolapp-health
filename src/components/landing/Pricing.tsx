@@ -14,6 +14,9 @@ const free = [
 
 const pro = [
   "Everything in Free",
+  "AI Research Assistant (50 queries/mo)",
+  "AI Stack Builder",
+  "AI Wellness Coach",
   "Apple Watch companion app",
   "Apple Health sync",
   "Unlimited protocols",
@@ -30,9 +33,9 @@ const pro = [
 ];
 
 const plans = [
-  { id: "monthly", label: "Monthly", price: "$7.99", period: "/month", note: null },
-  { id: "annual",  label: "Annual",  price: "$59.99", period: "/year", note: "Save 37%" },
-  { id: "lifetime", label: "Lifetime", price: "$119.99", period: " one-time", note: "Best value" },
+  { id: "monthly", label: "Monthly", price: "$2.99", period: "/month", note: null },
+  { id: "annual",  label: "Annual",  price: "$24.99", period: "/year", note: "Save 30%" },
+  { id: "lifetime", label: "Lifetime", price: "$49.99", period: " one-time", note: "Best value" },
 ];
 
 export default function Pricing() {
@@ -145,7 +148,7 @@ export default function Pricing() {
                 <p className="text-teal-400 text-sm mt-1">Pay once. Use forever.</p>
               )}
               {selected === "annual" && (
-                <p className="text-teal-400 text-sm mt-1">Just $5.00/month — billed annually.</p>
+                <p className="text-teal-400 text-sm mt-1">Just $2.08/month — billed annually.</p>
               )}
               {selected === "monthly" && (
                 <p className="text-slate-500 text-sm mt-1">Cancel anytime.</p>

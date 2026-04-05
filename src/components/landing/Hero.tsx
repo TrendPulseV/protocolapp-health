@@ -7,6 +7,7 @@ const stats = [
   { icon: "✓", label: "100% adherence" },
   { icon: "💉", label: "1,000+ doses tracked" },
   { icon: "🔒", label: "Zero data shared" },
+  { icon: "🤖", label: "AI Research" },
   { icon: "⌚", label: "Apple Watch" },
   { icon: "❤️", label: "Apple Health" },
 ];
