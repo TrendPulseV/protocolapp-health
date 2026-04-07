@@ -5,158 +5,150 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import Lightbox from "./Lightbox";
 
-const screens = [
+const SCREENS = [
+  {
+    title: "AI Research Assistant",
+    description: "Ask anything — interactions, dosing, half-lives, side effects",
+    file: "Research Assistant - iPhone 17 Pro - 2026-04-06 at 19.53.50.png",
+    bg: "from-teal-900/40 to-emerald-950/40",
+    aiFeature: true,
+  },
   {
     title: "Today",
     description: "PK curves, streak stats, and every dose due today",
-    file: "/screenshots/today-ipad.png",
+    file: "Today  - iPhone 17 Pro - 2026-04-06 at 19.51.13.png",
     bg: "from-teal-900/40 to-teal-950/40",
-    device: "ipad" as const,
   },
   {
-    title: "Body Map",
-    description: "Tap-anywhere injection site rotation with smart suggestions",
-    file: "/screenshots/body-map-ipad.png",
+    title: "Health Dashboard",
+    description: "Energy, mood, sleep, and pain tracked over time",
+    file: "Health Dashboard - iPhone 17 Pro - 2026-04-06 at 19.54.27.png",
     bg: "from-blue-900/40 to-blue-950/40",
-    device: "ipad" as const,
+  },
+  {
+    title: "Apple Health",
+    description: "Weight, measurements, and mindfulness sync automatically",
+    file: "Apple Heath - iPhone 17 Pro - 2026-04-06 at 19.51.47.png",
+    bg: "from-red-900/40 to-red-950/40",
   },
   {
     title: "Progress",
-    description: "Achievements, weight milestones, and 7-day metrics",
-    file: "/screenshots/progress-ipad.png",
+    description: "Achievements, streaks, and 7-day adherence at a glance",
+    file: "Progress - iPhone 17 Pro - 2026-04-06 at 19.52.10.png",
     bg: "from-purple-900/40 to-purple-950/40",
-    device: "ipad" as const,
   },
   {
-    title: "Protocol",
-    description: "Multi-peptide protocols with flexible scheduling",
-    file: "/screenshots/protocol-ipad.png",
-    bg: "from-green-900/40 to-green-950/40",
-    device: "ipad" as const,
+    title: "Progress Details",
+    description: "Weight milestones, body metrics, and goal progress",
+    file: "Progress 2- iPhone 17 Pro - 2026-04-06 at 19.52.27.png",
+    bg: "from-violet-900/40 to-violet-950/40",
   },
   {
     title: "Check-in",
     description: "Daily wellness check-in: energy, mood, sleep, pain",
-    file: "/screenshots/checkin-ipad.png",
+    file: "Checkin - iPhone 17 Pro Max - 2026-04-06 at 20.10.13.png",
     bg: "from-rose-900/40 to-rose-950/40",
-    device: "ipad" as const,
   },
   {
-    title: "Catalog",
-    description: "Browse 100+ compounds with dosing guides and half-life data",
-    file: "/screenshots/catalog.png",
+    title: "Inventory",
+    description: "Track vials, amounts, expiry dates, and vendor details",
+    file: "Inventoryt - iPhone 17 Pro - 2026-04-06 at 19.52.43.png",
+    bg: "from-green-900/40 to-green-950/40",
+  },
+  {
+    title: "Health Report",
+    description: "Full PDF export of your health data and protocol history",
+    file: "Health Report  - iPhone 17 Pro - 2026-04-06 at 19.55.28.png",
     bg: "from-sky-900/40 to-sky-950/40",
-    device: "ipad" as const,
   },
   {
-    title: "Export",
-    description: "Choose your format — PDF reports or raw CSV data",
-    file: "/screenshots/export-options.png",
-    bg: "from-orange-900/40 to-orange-950/40",
-    device: "ipad" as const,
-  },
-  {
-    title: "Export Data",
+    title: "Data & Export",
     description: "Full dose history, protocols, and metrics — always yours",
-    file: "/screenshots/export-data.png",
-    bg: "from-amber-900/40 to-orange-950/40",
-    device: "ipad" as const,
-  },
-  {
-    title: "AI Research",
-    description: "Ask anything — interactions, dosing, half-lives, side effects",
-    file: "/screenshots/research.png",
-    bg: "from-teal-900/40 to-emerald-950/40",
-    device: "ipad" as const,
+    file: "Settings Data Report- iPhone 17 Pro - 2026-04-06 at 19.55.00.png",
+    bg: "from-orange-900/40 to-orange-950/40",
   },
 ];
 
-type Screen = typeof screens[0];
+type Screen = (typeof SCREENS)[0];
 
-function DeviceMockup({ screen, onClick }: { screen: Screen; onClick: () => void }) {
-  const isIpad = screen.device === "ipad";
+function PhoneMockup({
+  screen,
+  onClick,
+}: {
+  screen: Screen;
+  onClick: () => void;
+}) {
+  const src = `/screenshots/${encodeURIComponent(screen.file)}`;
 
-  if (isIpad) {
-    return (
-      <button
-        className="flex-shrink-0 text-left group cursor-pointer focus:outline-none"
-        style={{ width: 320 }}
-        onClick={onClick}
-        aria-label={`View ${screen.title} screenshot`}
-      >
-        {/* iPad frame */}
-        <div className="relative rounded-[28px] bg-[#1a1a1a] border-[7px] border-[#2a2a2a] shadow-2xl overflow-hidden transition-transform duration-200 group-hover:scale-[1.03] group-hover:shadow-[0_0_40px_rgba(20,184,166,0.2)]"
-          style={{ width: 306, height: 430 }}>
-          {/* Front camera pill */}
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[14px] h-[14px] rounded-full bg-black z-10" />
-
-          {/* Screen content */}
-          <div className={`absolute inset-0 bg-gradient-to-b ${screen.bg}`}>
-            <Image
-              src={screen.file}
-              alt={screen.title}
-              fill
-              className="object-cover object-top"
-              sizes="306px"
-              quality={95}
-            />
-          </div>
-
-          {/* Tap hint overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 glass-teal rounded-full px-4 py-2 flex items-center gap-2">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-              </svg>
-              <span className="text-teal-400 text-sm font-medium">Expand</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Label */}
-        <div className="mt-5 text-center">
-          <div className="flex items-center justify-center gap-2">
-            <p className="text-white font-semibold">{screen.title}</p>
-            <span className="text-[10px] text-slate-500 border border-slate-700 rounded px-1.5 py-0.5">iPad</span>
-          </div>
-          <p className="text-slate-500 text-sm mt-1 leading-relaxed">{screen.description}</p>
-        </div>
-      </button>
-    );
-  }
-
-  // iPhone fallback
   return (
     <button
-      className="flex-shrink-0 w-[300px] text-left group cursor-pointer focus:outline-none"
+      className="flex-shrink-0 text-left group cursor-pointer focus:outline-none relative"
+      style={{ width: 260 }}
       onClick={onClick}
       aria-label={`View ${screen.title} screenshot`}
     >
-      <div className="relative w-[300px] h-[640px] rounded-[44px] bg-[#1a1a1a] border-[8px] border-[#2a2a2a] shadow-2xl overflow-hidden transition-transform duration-200 group-hover:scale-[1.03] group-hover:shadow-[0_0_40px_rgba(20,184,166,0.2)]">
+      {/* AI glow highlight */}
+      {screen.aiFeature && (
+        <div className="absolute -inset-3 rounded-[52px] bg-teal-500/20 blur-xl z-0 pointer-events-none" />
+      )}
+
+      {/* Phone frame */}
+      <div
+        className="relative rounded-[44px] bg-[#1a1a1a] border-[8px] border-[#2a2a2a] shadow-2xl overflow-hidden transition-transform duration-200 group-hover:scale-[1.03] group-hover:shadow-[0_0_40px_rgba(20,184,166,0.25)] z-10"
+        style={{ width: 244, height: 528 }}
+      >
+        {/* Dynamic Island */}
         <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[90px] h-[26px] rounded-full bg-black z-10" />
+
+        {/* Screen */}
         <div className={`absolute inset-0 bg-gradient-to-b ${screen.bg}`}>
           <Image
-            src={screen.file}
+            src={src}
             alt={screen.title}
             fill
             className="object-cover object-top"
-            sizes="300px"
-            quality={95}
+            sizes="244px"
+            quality={90}
           />
         </div>
+
+        {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 glass-teal rounded-full px-4 py-2 flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#14b8a6"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
             </svg>
             <span className="text-teal-400 text-sm font-medium">Expand</span>
           </div>
         </div>
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[90px] h-[5px] rounded-full bg-white/30" />
+
+        {/* Home indicator */}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[80px] h-[4px] rounded-full bg-white/30" />
       </div>
-      <div className="mt-5 text-center">
-        <p className="text-white font-semibold">{screen.title}</p>
-        <p className="text-slate-500 text-sm mt-1 leading-relaxed">{screen.description}</p>
+
+      {/* Label */}
+      <div className="mt-4 text-center relative z-10">
+        <div className="flex items-center justify-center gap-2">
+          <p className="text-white font-semibold text-sm">{screen.title}</p>
+          {screen.aiFeature && (
+            <span className="text-[10px] text-teal-400 border border-teal-500/50 rounded px-1.5 py-0.5 font-medium">
+              AI
+            </span>
+          )}
+        </div>
+        <p className="text-slate-500 text-xs mt-1 leading-relaxed max-w-[220px] mx-auto">
+          {screen.description}
+        </p>
       </div>
     </button>
   );
@@ -164,13 +156,23 @@ function DeviceMockup({ screen, onClick }: { screen: Screen; onClick: () => void
 
 export default function Screenshots() {
   const ref = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [lightbox, setLightbox] = useState<Screen | null>(null);
 
+  const scroll = (dir: "left" | "right") => {
+    scrollRef.current?.scrollBy({
+      left: dir === "right" ? 280 : -280,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section id="screenshots" className="py-20 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-teal-500/5 blur-[100px] pointer-events-none" />
+    <section id="screenshots" className="py-20 relative">
+      {/* Background glow — isolated so it never clips the scroll area */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-teal-500/5 blur-[100px]" />
+      </div>
 
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
@@ -181,7 +183,9 @@ export default function Screenshots() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 glass-teal rounded-full px-4 py-2 mb-6">
-            <span className="text-teal-400 text-sm font-medium">See it in action</span>
+            <span className="text-teal-400 text-sm font-medium">
+              See it in action
+            </span>
           </div>
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             Precision, in your{" "}
@@ -193,28 +197,75 @@ export default function Screenshots() {
         </motion.div>
       </div>
 
-      {/* Horizontal scroll — full width */}
-      <motion.div
-        initial={{ opacity: 0, x: 40 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        className="flex gap-6 overflow-x-auto pb-6"
-        style={{
-          paddingLeft: "max(24px, calc((100vw - 1152px) / 2))",
-          paddingRight: "max(24px, calc((100vw - 1152px) / 2))",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-      >
-        {screens.map((s, i) => (
-          <DeviceMockup key={i} screen={s} onClick={() => setLightbox(s)} />
-        ))}
-      </motion.div>
+      {/* Scroll container */}
+      <div className="relative">
+        {/* Left arrow */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-3 z-20 glass rounded-full w-10 h-10 flex items-center justify-center text-teal-400 hover:text-white hover:bg-white/10 transition-all duration-200 shadow-lg"
+          style={{ top: 264 }}
+          aria-label="Scroll left"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <motion.div
+          ref={scrollRef}
+          initial={{ opacity: 0, x: 40 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="flex gap-5 overflow-x-auto pb-6"
+          style={
+            {
+              paddingLeft: "max(52px, calc((100vw - 1152px) / 2))",
+              paddingRight: "max(52px, calc((100vw - 1152px) / 2))",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            } as React.CSSProperties
+          }
+        >
+          {SCREENS.map((s, i) => (
+            <PhoneMockup key={i} screen={s} onClick={() => setLightbox(s)} />
+          ))}
+        </motion.div>
+
+        {/* Right arrow */}
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-3 z-20 glass rounded-full w-10 h-10 flex items-center justify-center text-teal-400 hover:text-white hover:bg-white/10 transition-all duration-200 shadow-lg"
+          style={{ top: 264 }}
+          aria-label="Scroll right"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
 
       {/* Lightbox */}
       {lightbox && (
         <Lightbox
-          src={lightbox.file}
+          src={`/screenshots/${encodeURIComponent(lightbox.file)}`}
           title={lightbox.title}
           description={lightbox.description}
           onClose={() => setLightbox(null)}

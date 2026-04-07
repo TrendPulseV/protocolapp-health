@@ -5,6 +5,26 @@ import { useRef } from "react";
 
 const features = [
   {
+    emoji: "🤖",
+    title: "AI Research Assistant",
+    description:
+      "Ask anything about your compounds — half-lives, interactions, dosing windows, side effects. Grounded in research, context-aware of your active stack. 50 queries/month included with Pro.",
+    color: "from-teal-500/25 to-emerald-600/10",
+    border: "border-teal-500/30",
+    tag: "AI · Pro",
+    ai: true,
+  },
+  {
+    emoji: "🧬",
+    title: "AI Stack Builder",
+    description:
+      "Describe your goal — fat loss, recovery, longevity — and the AI builds a complete protocol with compounds, doses, and schedules. Review, edit, and activate it in one tap.",
+    color: "from-violet-500/25 to-violet-600/10",
+    border: "border-violet-500/30",
+    tag: "AI · Pro",
+    ai: true,
+  },
+  {
     emoji: "🔬",
     title: "Track Every Dose",
     description:
@@ -59,13 +79,13 @@ const features = [
     tag: "Inventory",
   },
   {
-    emoji: "⌚",
-    title: "Apple Watch Companion",
+    emoji: "📱",
+    title: "iPad Compatible",
     description:
-      "Log doses, check active levels, and complete daily check-ins directly from your wrist. Today's schedule, Quick Log, and complications on your watch face — all synced offline-first.",
-    color: "from-sky-500/20 to-sky-600/5",
-    border: "border-sky-500/20",
-    tag: "Pro",
+      "Full iPad support with a layout optimized for the larger screen. Every feature — dose logging, body map, PK curves, AI research — beautifully presented on any iOS device.",
+    color: "from-slate-500/20 to-slate-600/5",
+    border: "border-slate-500/20",
+    tag: "iPad",
   },
   {
     emoji: "❤️",
@@ -77,22 +97,13 @@ const features = [
     tag: "Pro",
   },
   {
-    emoji: "🤖",
-    title: "AI Research Assistant",
+    emoji: "⌚",
+    title: "Apple Watch Companion",
     description:
-      "Ask anything about your compounds — half-lives, interactions, dosing windows, side effects. Grounded in research, context-aware of your active stack. 50 queries/month included with Pro.",
-    color: "from-teal-500/20 to-emerald-600/5",
-    border: "border-teal-500/20",
-    tag: "Pro",
-  },
-  {
-    emoji: "🧬",
-    title: "AI Stack Builder",
-    description:
-      "Describe your goal — fat loss, recovery, longevity — and the AI builds a complete protocol with compounds, doses, and schedules. Review, edit, and activate it in one tap.",
-    color: "from-violet-500/20 to-violet-600/5",
-    border: "border-violet-500/20",
-    tag: "Pro",
+      "Log doses, check active levels, and complete daily check-ins directly from your wrist. Today's schedule, Quick Log, and complications on your watch face.",
+    color: "from-sky-500/20 to-sky-600/5",
+    border: "border-sky-500/30",
+    tag: "Coming Soon",
   },
 ];
 
@@ -122,14 +133,17 @@ export default function Features() {
           ref={ref}
         >
           <div className="inline-flex items-center gap-2 glass-teal rounded-full px-4 py-2 mb-6">
-            <span className="text-teal-400 text-sm font-medium">Everything you need</span>
+            <span className="text-teal-400 text-sm font-medium">
+              Everything you need
+            </span>
           </div>
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            Built for serious{" "}
-            <span className="gradient-text">biohackers.</span>
+            AI-powered.{" "}
+            <span className="gradient-text">Built for biohackers.</span>
           </h2>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            Every feature designed around precision, privacy, and the reality of running a peptide protocol.
+            Every feature designed around precision, privacy, and the reality of
+            running a peptide protocol — with AI that actually knows your stack.
           </p>
         </motion.div>
 
@@ -146,14 +160,27 @@ export default function Features() {
               variants={cardVariants}
               className={`relative p-6 rounded-2xl bg-gradient-to-br ${f.color} border ${f.border} group hover:scale-[1.02] transition-transform duration-200`}
             >
+              {f.ai && (
+                <div className="absolute inset-0 rounded-2xl bg-teal-500/5 pointer-events-none" />
+              )}
               <div className="flex items-start justify-between mb-4">
                 <span className="text-4xl">{f.emoji}</span>
-                <span className="glass rounded-full px-3 py-1 text-xs text-slate-400 font-medium">
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-medium ${
+                    f.ai
+                      ? "bg-teal-500/20 text-teal-300 border border-teal-500/30"
+                      : f.tag === "Coming Soon"
+                      ? "glass text-slate-500 font-medium"
+                      : "glass text-slate-400"
+                  }`}
+                >
                   {f.tag}
                 </span>
               </div>
               <h3 className="text-xl font-bold text-white mb-3">{f.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{f.description}</p>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                {f.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>
