@@ -44,6 +44,12 @@ const SCREENS = [
     bg: "from-violet-900/40 to-violet-950/40",
   },
   {
+    title: "Injection Sites",
+    description: "Tap-anywhere body map with smart rotation history",
+    file: "Injection site - iPhone 17 Pro - 2026-04-06 at 20.42.49.png",
+    bg: "from-blue-900/40 to-indigo-950/40",
+  },
+  {
     title: "Check-in",
     description: "Daily wellness check-in: energy, mood, sleep, pain",
     file: "Checkin - iPhone 17 Pro Max - 2026-04-06 at 20.10.13.png",
